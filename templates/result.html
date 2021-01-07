@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %} Currency calculator {% endblock %}
+{% block body %}
+<div class="row">
+    <h3>{{ amount }} {{ abr_first_cur }} equals to {{ rate }} {{ abr_second_cur }}</h3>
+    <h5>{{ abr_first_cur }}-{{full_first_cur}}</h5>
+    <h5>{{ abr_second_cur }}-{{full_second_cur}}</h5>
+</div>
+<h4><a href="{{ url_for('index') }}">Calculate more</a></h4>
+<br>
+<h8>Times used: {{count.times}}</h8>
+{% endblock %}

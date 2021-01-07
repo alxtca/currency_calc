@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %} Currency calculator {% endblock %}
+{% block body %}
+<h4>Last updated: {{ up_date }}</h4>
+<!--
+<select>
+    {% for cur in currency %}
+    <option> 1EUR is equal to {{cur.cost_to_eur}} {{ cur.abbreviation }} </option>
+    {% endfor %}
+</select>
+<h3> Calculator: </h3>
+-->
+<form action="{{ url_for('result') }}" method="post">
+    <h4>From</h4>
+    <input type="number" name="amount" value="1" step="0.01">
+    <select name="first_cur">
+        <option value="EUR">EUR-Euro</option>
+        {% for cur in currency %}
+        <option value="{{ cur.id }}">{{cur.abbreviation}}-{{cur.full_name}}</option>
+        {% endfor %}
+    </select>
+    <h4>To</h4>
+    <select name="second_cur">
+        <option value="EUR">EUR-Euro</option>
+        {% for cur in currency %}
+        <option value="{{ cur.id }}">{{cur.abbreviation}}-{{cur.full_name}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Calculate</button>
+
+</form>
+
+
+{% endblock %}
