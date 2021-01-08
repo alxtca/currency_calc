@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from models import *
 from datetime import datetime
 import requests
@@ -76,10 +76,6 @@ def index():
 # calculate rates and display results
 @app.route("/result", methods=['POST'])
 def result():
-    # Update 'times used' counter only when posted
-    count = Counter.query.get(1)
-    count.times += 1
-    db.session.commit()
 
     # first and second currency. Which are currency.id
     first_cur = request.form.get("first_cur")  # id
@@ -110,7 +106,7 @@ def result():
 
     return render_template("result.html", abr_first_cur=abr_first_cur, full_first_cur=full_names[abr_first_cur],
                            abr_second_cur=abr_second_cur, full_second_cur=full_names[abr_second_cur],
-                           amount=amount, rate=rate, count=count)
+                           amount=amount, rate=rate)
 
 
 if __name__ == '__main__':
